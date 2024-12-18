@@ -18,11 +18,8 @@ public class CustomerAccount {
         if (amount <= 0) {
             return false;
         }
-        if(Balance < 100){
-            throw new InSufficientBalanceException("Balance is not sufficient for this transaction");
-        }
-        boolean isValidBalanceRange = getBalance() - amount < 100;
-        if (amount > Balance || isValidBalanceRange) {
+        boolean isValidBalanceRange = Balance - amount < 100;
+        if (amount > Balance || isValidBalanceRange || Balance < 100) {
             throw new InSufficientBalanceException("Balance is not sufficient for this transaction");
         }
         Balance -= amount;
